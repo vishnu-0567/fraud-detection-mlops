@@ -5,7 +5,7 @@ from sklearn.metrics import confusion_matrix, classification_report, roc_auc_sco
 
 st.title("Live Fraud Detection Dashboard")
 
-DATA_PATH = r".\stream_predictions.csv"
+DATA_PATH = r"stream_predictions.csv"
 
 @st.cache_data(ttl=30)  # refresh every 30s
 def load_data():
