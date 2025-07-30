@@ -121,4 +121,4 @@ MIT
 
 ---
 
-**Built by [Your Name] — Portfolio/Interview-ready.**
+**Built by Anthati Vishnu Vardhan — Portfolio/Interview-ready.**
