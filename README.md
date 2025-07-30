@@ -1,114 +1,99 @@
-# fraud-detection-mlops
-End-to-end credit card fraud detection ML pipeline with real-time scoring and monitoring
-# End-to-End Credit Card Fraud Detection ML Pipeline 🚀
+# End-to-End Credit Card Fraud Detection 🚀
 
 ## Overview
 
-A fully production-style machine learning solution for detecting credit card fraud in real time. This project features in-depth EDA, feature engineering, model training with XGBoost, REST API deployment using FastAPI, a transaction streaming simulator, and a live monitoring dashboard with Streamlit. It follows best practices for MLOps and is perfect as a portfolio centerpiece.
+A beginner-friendly, real-time machine learning project for credit card fraud detection, with model deployment, API streaming, and a live monitoring dashboard.
 
 ---
 
 ## Project Structure
 
-- `notebooks/` – EDA & feature engineering notebooks
-- `models/` – Saved trained models
-- `app/api.py` – FastAPI app serving model predictions
-- `simulate_stream.py` / `predict_x_test_api.py` – Scripts for generating and logging predictions via API
-- `X_test.csv` – Exported test features for API batch prediction
-- `stream_predictions.csv` – Log of predictions for dashboarding
-- `app/dashboard.py` – Streamlit dashboard for live monitoring
-- `screenshots/` – Project and result screenshots
+- `notebooks/` — EDA, modeling, and feature engineering notebooks
+- `models/` — Final model artifacts (`fraud_xgb.joblib`)
+- `app/api.py` — FastAPI app to serve predictions
+- `simulate_stream.py` — Script to send X_test transactions to the API
+- `app/dashboard.py` — Streamlit dashboard for monitoring
+- `data/X_test.csv` — Test data with features and actual label (`Class`)
+- `requirements.txt` — All dependencies
+- `screenshots/` — Screenshots of API and dashboard
 
 ---
 
-## Quickstart ⚡
+## How to Run (Step by Step)
 
-1. **Clone & Install**
-    ```
-    git clone [(https://github.com/vishnu-0567/Transaction-Fraud-Detection)]
-    cd fraud-detection-mlops
-    pip install -r requirements.txt
-    ```
+1. **Clone this repo and install requirements**
+git clone https://github.com/<your-username>/<your-repo>.git
+cd fraud-detection-mlops
+pip install -r requirements.txt
 
-2. **Train Model & Export Artifacts**
-    - Use notebooks for data prep, feature engineering, and model training.
-    - Export final model to `models/fraud_xgb.joblib`.
 
-3. **Serve Model as API**
-    ```
-    uvicorn app.api:app --reload
-    ```
 
-4. **Simulate Transactions or Batch-Predict Test Set (API Method)**
-    - Ensure `X_test.csv` includes all features the model expects.
-    ```
-    python predict_x_test_api.py
-    ```
-    - Predictions are logged to `stream_predictions.csv`.
+2. **Train and save the model using notebooks in `notebooks/`**
+ - Export model to `models/fraud_xgb.joblib`
+ - Add `Class` to `X_test` and save as `data/X_test.csv`
 
-5. **Run Streamlit Dashboard**
-    ```
-    streamlit run app/dashboard.py
-    ```
-    - Open `http://localhost:8501` to see real-time model results and metrics.
+3. **Start the FastAPI server**
+uvicorn app.api:app --reload
+
+
+
+4. **Simulate transaction scoring (with streaming and logging)**
+python simulate_stream.py
+
+
+
+5. **Launch the Streamlit dashboard**
+streamlit run app/dashboard.py
+
+
+ - Open the browser link shown in the terminal.
 
 ---
 
-## Example API Usage
+## Example: API Prediction
 
-**POST /predict**
+Request:
 {
-"V1": -1.35980, "V2": -0.07, ..., "Amount": 149.62, "Hour": 0, "Day": 0, "UserTxnCount": 0, ...
+"Unnamed: 0": 1,
+"V1": 0.35,
+"...": "...",
+"TimeSinceLastTxn": 0.0
 }
 
-text
-**Sample Response**
+
+
+Response:
 {
-"fraud_probability": 0.00005,
+"fraud_probability": 0.001,
 "fraud_prediction": 0
 }
 
-text
+
 
 ---
 
 ## Screenshots
 
-![Dashboard Screenshot](screenshots/dashboard_sample.png)
-![API Docs](screenshots/api_docs.png)
-![SHAP Feature Importances](screenshots/shap_importance.png)
+![API Swagger Docs](screenshots/api_docs.png)
+![Streamlit Dashboard](screenshots/dashboard.png)
+![description](screenshots/your_screenshot.png)
 
 ---
 
 ## Results
 
-- **ROC-AUC:** 0.98+
-- **Recall (fraud):** 0.83
-- **Precision (fraud):** 0.80
-- **Streaming and API-based scoring successful**
-- **Live dashboard for monitoring and performance review**
+- **ROC-AUC:** (add your value here)
+- **Prec/Recall:** (add your value here)
+- Real-time API and dashboard&nbsp;demo
 
 ---
 
-## How to Extend
+## Credits
 
-- Add email/SMS alerting for fraud spikes or model drift
-- Integrate retraining triggers when performance drops
-- Deploy API on cloud platform (AWS, Azure, GCP)
-- CI/CD: automate model rebuild and redeployment
-
----
-
-## Tech Stack
-
-Python, pandas, scikit-learn, XGBoost, imbalanced-learn, FastAPI, Streamlit, SHAP
+Built by [Your Name]. Beginner-friendly – see `README.md` for all steps!
 
 ---
 
 ## License
 
 MIT
-
----
-
-*project by [Vishnu Vardhan].*
