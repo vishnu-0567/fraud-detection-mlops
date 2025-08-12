@@ -1,4 +1,8 @@
+fastapi
+uvicorn
+xgboost
+joblib
+scikit-learn
 pandas
 numpy
-scikit-learn
 streamlit
